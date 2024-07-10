@@ -1,0 +1,107 @@
+pl:
+  date:
+    month_names: [~, Styczeń, Luty, Marzec, Kwiecień, Maj, Czerwiec, Lipiec, Sierpień, Wrzesień, Październik, Listopad, Grudzień]
+    formats:
+      long: "%d %B %Y"
+  time:
+    formats:
+      long: "%d %B %Y %H:%M"
+  login: Zaloguj
+  register: Zarejestruj się
+  forget: "Zapomniałeś hasła?"
+  password: Hasło
+  password_confirmation: Potwierdź hasło
+  current_password: Dotychczasowe hasło
+  name: Nazwa
+  email: E-mail
+  edit_user: Edytuj profil
+  save: "Zapisz zmiany"
+  cancel_account: Usuń konto
+  characters_minimum: "Minimalna ilość znaków"
+
+  activerecord:
+    attributes:
+      ticket:
+        statuses:
+          open: "Do pobrania"
+          assigned: "Przypisane"
+          in_progress: "W trakcie"
+          resolved: "Rozwiązane"
+          closed: "Zamknięte"
+        priorities:
+          low: "Niski"
+          medium: "Średni"
+          high: "Wysoki"
+          urgent: "Pilny"
+    errors:
+      messages:
+        record_invalid: "Nieprawidłowy rekord: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "Nie można usunąć rekordu, gdyż istnieje zależny %{record}"
+          has_many: "Nie można usunąć rekordu, gdyż istnieją zależne %{record}"
+  tickets:
+    index:
+      title: "Moje zgłoszenia"
+      new_ticket: "Nowe zgłoszenie"
+      search: "Szukaj"
+      status_prompt: "Status"
+      priority_prompt: "Priorytet"
+      actions: "Akcje"
+      show: "Pokaż"
+      edit: "Edytuj"
+      delete: "Usuń"
+      confirm_delete: "Czy na pewno chcesz usunąć to zgłoszenie?"
+  views:
+    pagination:
+      first: "&laquo; Pierwsza"
+      last: "Ostatnia &raquo;"
+      previous: "&lsaquo; Poprzednia"
+      next: "Następna &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Nie znaleziono %{entry_name}"
+          one: "Wyświetlanie <b>1</b> %{entry_name}"
+          other: "Wyświetlanie <b>wszystkich %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Wyświetlanie %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> z <b>%{total}</b> łącznie"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: musi zostać zaakceptowane
+      blank: nie może być puste
+      confirmation: nie zgadza się z polem %{attribute}
+      empty: nie może być puste
+      equal_to: musi być równe %{count}
+      even: musi być parzyste
+      exclusion: jest zarezerwowane
+      greater_than: musi być większe od %{count}
+      greater_than_or_equal_to: musi być większe lub równe %{count}
+      inclusion: nie znajduje się na liście dopuszczalnych wartości
+      invalid: jest nieprawidłowe
+      less_than: musi być mniejsze od %{count}
+      less_than_or_equal_to: musi być mniejsze lub równe %{count}
+      model_invalid: "Walidacja nie powiodła się: %{errors}"
+      not_a_number: nie jest liczbą
+      not_an_integer: musi być liczbą całkowitą
+      odd: musi być nieparzyste
+      other_than: musi być inna niż %{count}
+      present: musi być puste
+      required: musi istnieć
+      taken: zostało już zajęte
+      too_long:
+        one: jest za długie (maksymalnie jeden znak)
+        other: jest za długie (maksymalnie %{count} znaków)
+      too_short:
+        one: jest za krótkie (przynajmniej jeden znak)
+        other: jest za krótkie (przynajmniej %{count} znaków)
+      wrong_length:
+        one: ma nieprawidłową długość (powinna wynosić jeden znak)
+        other: ma nieprawidłową długość (powinna wynosić %{count} znaków)
+    template:
+      body: 'Wystąpiły problemy z następującymi polami:'
+      header:
+        one: "%{model} nie został zachowany z powodu jednego błędu"
+        other: "%{model} nie został zachowany z powodu %{count} błędów"

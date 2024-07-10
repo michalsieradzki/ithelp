@@ -1,0 +1,22 @@
+h2.mb-4 = t(:register)
+
+.card.p-5
+  .card-body.text-center
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f|
+      .form-group.mb-3
+        = f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control center-placeholder', required: true, placeholder: t(:name)
+      
+      .form-group.mb-3
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control center-placeholder', required: true, placeholder: t(:email)
+      
+      .form-group.mb-3
+        = f.password_field :password, autocomplete: "new-password", class: 'form-control center-placeholder', required: true, placeholder: t(:password)
+      
+      .form-group.mb-3
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control center-placeholder', required: true, placeholder: t(:password_confirmation)
+
+      .form-group
+        = f.submit t(:register), class: 'btn btn-primary w-100'
+
+  .mt-3
+    = render "devise/shared/links"

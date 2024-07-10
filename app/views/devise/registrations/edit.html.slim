@@ -1,0 +1,32 @@
+h2.mb-4 = t(:edit_user)
+
+.card.p-5
+  .card-body.text-center
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'needs-validation', novalidate: true }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+
+      .form-group.mb-3
+        = f.text_field :name, autofocus: true, class: 'form-control center-placeholder', required: true, placeholder: t(:name)
+
+      .form-group.mb-3
+        = f.email_field :email, autocomplete: "email", class: 'form-control center-placeholder', required: true, placeholder: t(:email)
+
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        .mb-3 Currently waiting confirmation for: = resource.unconfirmed_email
+
+      .form-group.mb-3
+        = f.password_field :password, autocomplete: "new-password", class: 'form-control center-placeholder', placeholder: t(:password)
+        - if @minimum_password_length
+          small.form-text.text-muted
+            | #{t(:minimum_password_length)} #{@minimum_password_length} #{t(:characters_minimum)}
+
+      .form-group.mb-3
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control center-placeholder', placeholder: t(:password_confirmation)
+
+      .form-group.mb-3
+        = f.password_field :current_password, autocomplete: "current-password", class: 'form-control center-placeholder', required: true, placeholder: t(:current_password)
+
+      .form-group
+        = f.submit t(:save), class: 'btn btn-primary w-100'
+  .mt-3
+    = link_to t(:back), :back, class: 'btn btn-secondary'

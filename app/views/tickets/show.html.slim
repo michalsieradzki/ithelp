@@ -1,0 +1,62 @@
+.container-fluid
+  h1.mb-4 Zgłoszenie ##{@ticket.id}
+
+  .row
+    .col-md-4
+      .card
+        .card-header
+          h5 Szczegóły zgłoszenia
+        .card-body
+          p
+            strong Tytuł:
+            = @ticket.title
+          p
+            strong Status:
+            = @ticket.status
+          p
+            strong Priorytet:
+            = t("activerecord.attributes.ticket.priorities.#{@ticket.priority}")
+          p
+            strong Utworzone przez:
+            = @ticket.user.email
+          p
+            strong Przypisane do:
+            = @ticket.assigned_to&.email || 'Nie przypisano'
+          p
+            strong Data utworzenia:
+            = l(@ticket.created_at, format: :long)
+          p
+            strong Ostatnia aktualizacja:
+            = l(@ticket.updated_at, format: :long)
+
+      .card.mt-3
+        .card-header
+          h5 Opis
+        .card-body
+          = simple_format(@ticket.description)
+
+      - if can? :update, @ticket
+        = link_to 'Edytuj zgłoszenie', edit_ticket_path(@ticket), class: 'btn btn-primary mt-3'
+      = link_to 'Powrót do listy', tickets_path, class: 'btn btn-secondary mt-3 ms-2'
+
+    .col-md-4
+      .card
+        .card-header
+          h5 Komentarze
+        .card-body
+          = turbo_frame_tag "comments" do
+            - if @ticket.comments.any?
+              - @ticket.comments.each do |comment|
+                = render 'comments/comment', comment: comment
+            - else
+              p.text-muted Brak komentarzy.
+
+        - if can? :create, Comment.new(ticket: @ticket)
+          = turbo_frame_tag "new_comment" do
+            = render 'comments/form', ticket: @ticket, comment: Comment.new
+    .col-md-4
+      .card
+        .card-header
+          h5 Historia zgłoszenia
+        .card-body
+          p.text-muted System logowania historii zostanie dodany w przyszłości.

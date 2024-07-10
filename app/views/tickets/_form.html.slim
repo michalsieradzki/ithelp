@@ -1,0 +1,21 @@
+    = form_for(@ticket) do |f|
+      / = render 'shared/error_messages', resource: @ticket
+
+      .form-group.mb-3
+        = f.label :title, 'Tytuł'
+        = f.text_field :title, class: 'form-control', required: true, placeholder: 'Wprowadź tytuł zgłoszenia'
+
+      .form-group.mb-3
+        = f.label :description, 'Opis'
+        = f.text_area :description, rows: 5, class: 'form-control', required: true, placeholder: 'Wprowadź opis zgłoszenia'
+
+      .form-group.mb-3
+        = f.label :priority, 'Priorytet'
+        = f.select :priority, options_for_select(Ticket.priorities.map { |key, _| [I18n.t("activerecord.attributes.ticket.priorities.#{key}"), key] }, selected: @ticket.priority), {}, class: 'form-control'
+      -if can? :assign, Ticket
+        .form-group.mb-3
+          = f.label :assigned_to_id, 'Przypisane do'
+          = f.collection_select :assigned_to_id, User.all, :id, :email, { prompt: 'Wybierz użytkownika' }, { class: 'form-control' }
+
+      .form-group
+        = f.submit submit_text, class: 'btn btn-primary w-100'

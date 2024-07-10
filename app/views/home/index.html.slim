@@ -1,0 +1,26 @@
+.container.mt-5
+  .jumbotron
+    h1.display-4 Witaj w IT Assist Central!
+    p.lead Twój niezawodny system zarządzania zgłoszeniami IT.
+    hr.my-4
+    p Rozpocznij pracę, logując się lub tworząc nowe zgłoszenie.
+    =link_to 'Moje zgłoszenia', tickets_path, class: "btn btn-primary btn-lg m-1"
+    =link_to 'Nowe zgłoszenie', new_ticket_path, class: "btn btn-success btn-lg m-1"
+
+
+  .row.mt-4
+    .col-md-4
+      .card
+        .card-body
+          h5.card-title Szybka obsługa
+          p.card-text Nasz zespół jest gotowy, aby pomóc Ci jak najszybciej.
+    .col-md-4
+      .card
+        .card-body
+          h5.card-title Śledzenie zgłoszeń
+          p.card-text Monitoruj status swoich zgłoszeń w czasie rzeczywistym.
+    .col-md-4
+      .card
+        .card-body
+          h5.card-title Baza wiedzy
+          p.card-text Znajdź rozwiązania typowych problemów w naszej bazie wiedzy.

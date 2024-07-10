@@ -1,0 +1,16 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container
+    = link_to 'IT Assist Central', root_path, class: 'navbar-brand'
+    button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.ms-auto
+        - if user_signed_in?
+          li.nav-item
+            = link_to 'Edytuj profil', edit_user_registration_path(current_user), class: 'nav-link btn btn-link'
+            = button_to 'Wyloguj się', destroy_user_session_path, method: :delete, class: 'nav-link btn btn-link'
+        - else
+          li.nav-item
+            = link_to 'Zaloguj się', new_user_session_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Zarejestruj się', new_user_registration_path, class: 'nav-link'

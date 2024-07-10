@@ -1,0 +1,4 @@
+= form_with(model: [ticket, comment], local: false) do |f|
+  .form-group
+    = f.text_area :body, class: 'form-control', placeholder: 'Dodaj komentarz...'
+  = f.submit 'Dodaj komentarz', class: 'btn btn-primary mt-2'

@@ -1,0 +1,8 @@
+h2.mb-4 Edytuj zgłoszenie
+
+.card.p-5
+  .card-body.text-center
+    = render 'form', ticket: @ticket, submit_text: 'Zaktualizuj zgłoszenie'
+
+  .mt-3
+    = link_to 'Anuluj', @ticket, class: 'btn btn-secondary'
