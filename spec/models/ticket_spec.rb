@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
   let(:user) { User.create(email: 'test@example.com', password: 'password') }
-
+  let(:support_user) { create(:user, role: :support) }
   describe 'validations' do
     it 'is valid with valid attributes' do
       ticket = Ticket.new(
@@ -50,6 +50,14 @@ RSpec.describe Ticket, type: :model do
 
     it 'defines the correct priorities' do
       expect(Ticket.priorities.keys).to match_array(['low', 'medium', 'high', 'urgent'])
+    end
+  end
+
+  describe '#assigned_by_authorized_user' do
+    it 'allows admin to assign ticket' do
+      admin = create(:user, role: :admin)
+      ticket = build(:ticket, user: admin, assigned_to: support_user)
+      expect(ticket).to be_valid
     end
   end
 end

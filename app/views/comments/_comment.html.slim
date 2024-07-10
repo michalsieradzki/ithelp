@@ -1,6 +1,9 @@
 = turbo_frame_tag dom_id(comment) do
   .comment
-    p.text-muted= comment.body
-    p.text-muted= "Dodane przez: #{comment.user.email}"
+    p.text-muted.fs-5 = comment.body
+    p.text-muted.fs-6
+      | Dodane przez: 
+      strong
+        =comment.user.name
     - if can? :destroy, comment
-      = button_to 'Usuń', ticket_comment_path(@ticket, comment), method: :delete, data: { turbo_confirm: 'Czy na pewno chcesz usunąć ten komentarz?' }, class: 'btn btn-sm btn-danger'
+      = button_to 'X', ticket_comment_path(@ticket, comment), method: :delete, data: { turbo_confirm: 'Czy na pewno chcesz usunąć ten komentarz?' }, class: 'btn btn-sm btn-danger '
