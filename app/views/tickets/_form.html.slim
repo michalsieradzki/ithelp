@@ -1,4 +1,4 @@
-    = form_for(@ticket) do |f|
+    = form_for(@ticket, data: { turbo: false }) do |f|
       / = render 'shared/error_messages', resource: @ticket
 
       .form-group.mb-3
@@ -15,7 +15,7 @@
       -if can? :assign, Ticket
         .form-group.mb-3
           = f.label :assigned_to_id, 'Przypisane do'
-          = f.collection_select :assigned_to_id, User.all, :id, :email, { prompt: 'Wybierz użytkownika' }, { class: 'form-control' }
+          = f.collection_select :assigned_to_id, User.admins_and_support, :id, :email, { prompt: 'Wybierz użytkownika' }, { class: 'form-control' }
 
       .form-group
         = f.submit submit_text, class: 'btn btn-primary w-100'

@@ -20,8 +20,8 @@ RSpec.describe "comments/_comment", type: :view do
     expect(rendered).to include(user.name.to_s)
   end
 
-  it "contain delete button" do
+  it "contains delete button" do
     render partial: "comments/comment", locals: { comment: comment, ticket: ticket }
-    expect(rendered).to have_button('X')
+    expect(rendered).to have_css('a[data-turbo-method="delete"][data-turbo-confirm="Czy na pewno chcesz usunąć ten komentarz?"] i.bi-trash')
   end
 end

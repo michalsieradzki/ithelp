@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_10_133912) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_15_063602) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
     t.integer "ticket_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "ticket_id", null: false
+    t.integer "user_id", null: false
+    t.string "action_type", null: false
+    t.json "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_events_on_ticket_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -47,6 +58,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_10_133912) do
 
   add_foreign_key "comments", "tickets"
   add_foreign_key "comments", "users"
+  add_foreign_key "events", "tickets"
+  add_foreign_key "events", "users"
   add_foreign_key "tickets", "users"
   add_foreign_key "tickets", "users", column: "assigned_to_id"
 end

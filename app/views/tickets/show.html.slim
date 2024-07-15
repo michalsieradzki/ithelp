@@ -1,5 +1,5 @@
 .container-fluid
-  h1.mb-4 Zgłoszenie ##{@ticket.id}
+  h1.mb-4 =@ticket.title
 
   .row
     .col-md-4
@@ -8,25 +8,22 @@
           h5 Szczegóły zgłoszenia
         .card-body
           p
-            strong Tytuł:
-            = @ticket.title
-          p
-            strong Status:
+            strong Status: 
             = @ticket.status
           p
-            strong Priorytet:
+            strong Priorytet: 
             = t("activerecord.attributes.ticket.priorities.#{@ticket.priority}")
           p
-            strong Utworzone przez:
+            strong Utworzone przez: 
             = @ticket.user.email
           p
-            strong Przypisane do:
+            strong Przypisane do: 
             = @ticket.assigned_to&.email || 'Nie przypisano'
           p
-            strong Data utworzenia:
+            strong Data utworzenia: 
             = l(@ticket.created_at, format: :long)
           p
-            strong Ostatnia aktualizacja:
+            strong Ostatnia aktualizacja: 
             = l(@ticket.updated_at, format: :long)
 
       .card.mt-3
@@ -34,9 +31,14 @@
           h5 Opis
         .card-body
           = simple_format(@ticket.description)
-
+      - if @ticket.assigned_to == current_user && @ticket.assigned?
+        = button_to 'Porzuć zgłoszenie', assign_ticket_path(@ticket), method: :patch, class: 'btn btn-primary mt-3 w-100'
+      - elsif @ticket.assigned_to.nil?
+        = button_to 'Przypisz do mnie', assign_ticket_path(@ticket), method: :patch, class: 'btn btn-primary mt-3 w-100'
+      - else
+        p Zgłoszenie jest przypisane do innego użytkownika.
       - if can? :update, @ticket
-        = link_to 'Edytuj zgłoszenie', edit_ticket_path(@ticket), class: 'btn btn-primary mt-3 w-100'
+        = link_to t("edit"), edit_ticket_path(@ticket), class: 'btn btn-primary mt-3 w-100'
       = link_to 'Powrót do listy', tickets_path, class: 'btn btn-secondary mt-3 w-100'
 
     .col-md-4
@@ -59,4 +61,5 @@
         .card-header
           h5 Historia zgłoszenia
         .card-body
-          p.text-muted System logowania historii zostanie dodany w przyszłości.
+          = turbo_frame_tag "ticket_events" do
+            = render 'events', events: @events

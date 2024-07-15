@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :tickets do
     resources :comments, only: [:create, :destroy]
+
     member do
       patch :assign
     end

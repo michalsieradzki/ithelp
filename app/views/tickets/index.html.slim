@@ -23,16 +23,7 @@ h1 = t('.title')
         th = t('.actions')
     tbody
       - @tickets.each do |ticket|
-        tr
-          td = ticket.title
-          td = t("activerecord.attributes.ticket.statuses.#{ticket.status}")
-          td = t("activerecord.attributes.ticket.priorities.#{ticket.priority}")
-          td = ticket.user.name
-          td = ticket.assigned_to.try(:name)
-          td
-            = link_to t('.show'), ticket, class: 'btn btn-sm btn-info'
-            = link_to t('.edit'), edit_ticket_path(ticket), class: 'btn btn-sm btn-dark'
-            = link_to t('.delete'), ticket, method: :delete, data: { confirm: t('.confirm_delete') }, class: 'btn btn-sm btn-danger'
+        =render 'tickets/row', ticket: ticket
 
 .d-flex.justify-content-between.align-items-center.mt-3
   = page_entries_info @tickets

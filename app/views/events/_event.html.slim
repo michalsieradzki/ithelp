@@ -1,0 +1,4 @@
+li.mb-2 id="event_#{event.id}"
+  small.text-muted = l(event.created_at, format: :short)
+  br
+  = render_event_action(event)

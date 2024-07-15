@@ -1,0 +1,11 @@
+        tr
+          td = ticket.title
+          td = t("activerecord.attributes.ticket.statuses.#{ticket.status}")
+          td = t("activerecord.attributes.ticket.priorities.#{ticket.priority}")
+          td = ticket.user.name
+          td = ticket.assigned_to.try(:name)
+          td
+            .d-flex
+              = link_to content_tag(:i, '', class: 'bi-eye') , ticket, class: 'btn btn-sm btn-info'
+              = link_to content_tag(:i, '', class: 'bi-pencil-square'), edit_ticket_path(ticket), class: 'btn btn-sm btn-dark'
+              = link_to content_tag(:i, '', class: 'bi-trash'), ticket, method: :delete, data: { confirm: t('.confirm_delete') }, class: 'btn btn-sm btn-danger'

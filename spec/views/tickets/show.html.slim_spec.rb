@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "tickets/show", type: :view do
+  include Devise::Test::ControllerHelpers
+
   let(:user) { create(:user) }
   let(:ticket) { create(:ticket, user: user) }
 
@@ -11,7 +13,6 @@ RSpec.describe "tickets/show", type: :view do
 
   it "renders ticket attributes" do
     render
-    expect(rendered).to match(/Zgłoszenie ##{ticket.id}/)
     expect(rendered).to match(/#{ticket.title}/)
     expect(rendered).to match(/#{ticket.status}/)
     expect(rendered).to match(/#{ticket.user.email}/)
@@ -21,12 +22,12 @@ RSpec.describe "tickets/show", type: :view do
 
   it "renders edit link when user can update" do
     render
-    expect(rendered).to have_link('Edytuj zgłoszenie', href: edit_ticket_path(ticket))
+    expect(rendered).to have_link('Edytuj', href: edit_ticket_path(ticket))
   end
 
   it "does not render edit link when user cannot update" do
     allow(view).to receive(:can?).with(:update, ticket).and_return(false)
     render
-    expect(rendered).not_to have_link('Edytuj zgłoszenie')
+    expect(rendered).not_to have_link('Edytuj')
   end
 end

@@ -6,6 +6,7 @@ pl:
   time:
     formats:
       long: "%d %B %Y %H:%M"
+      short: "%d-%m-%Y %H:%M"
   login: Zaloguj
   register: Zarejestruj się
   forget: "Zapomniałeś hasła?"
@@ -18,7 +19,7 @@ pl:
   save: "Zapisz zmiany"
   cancel_account: Usuń konto
   characters_minimum: "Minimalna ilość znaków"
-
+  edit: "Edytuj"
   activerecord:
     attributes:
       ticket:

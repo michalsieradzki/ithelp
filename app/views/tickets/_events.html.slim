@@ -1,0 +1,6 @@
+= turbo_frame_tag "ticket_events" do
+  - if events.present?
+    ul.list-unstyled
+      = render partial: 'events/event', collection: events
+  - else
+    p.text-muted Brak zdarzeń w historii.

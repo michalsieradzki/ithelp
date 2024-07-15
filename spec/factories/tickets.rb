@@ -5,7 +5,6 @@ FactoryBot.define do
     status { "open" }
     priority { "medium" }
     association :user
-
     trait :with_assignment do
       association :assigned_to, factory: :support_user
     end
